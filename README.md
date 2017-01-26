@@ -14,14 +14,20 @@ This image is built on Docker Hub automatically any time the upstream Docker ima
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
   2. Pull this image from Docker Hub: `docker pull geerlingguy/docker-image-solr:latest` (or use the tag you built earlier, e.g. `docker-image-solr`).
-  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=/path/to/new_core:/var/solr/data/new_core:rw -p 8983:8983 geerlingguy/docker-image-solr:latest /sbin/init`
+  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=/path/to/new_core:/var/solr/data/new_core:rw -p 8983:8983 --restart=always --name=new_core geerlingguy/docker-image-solr:latest /sbin/init`
     1. Note that the `new_core` should contain a `conf` directory with your Solr core's `schema.xml`, `solrconfig.xml`, and other configuration, and a `data` directory where the index will be stored. You can also exclude the `--volume` definition for the `new_core` if you don't need any persistent data.
   4. Visit [http://localhost:8983/](http://localhost:8983/) in a browser, and you should see the Apache Solr admin interface.
   5. Click on 'Core Admin'.
-  6. Click 'Add Core' with the defaults that appear (assuming you are using the directory `new_core`).
+  6. You should see the `new_core` that you configured in the listing.
   7. Solr is ready to work with your application, using the `new_core`!
 
+When you're finished testing, run `docker stop new_core` to stop the container, and `docker rm new_core` to delete the container (the local core data—config and index data—on your host will be preserved).
+
 ## How to Use (Real World)
+
+Seeing a running Solr instance looks pretty... but means nothing in the real world. This container was created to solve the real-world problem of running multiple independent Solr cores, isolated one per Solr instance, on one or multiple Docker hosts.
+
+And on top of that, the creation and maintenance of all the Solr containers should be fully automated. You should be able to build or rebuild all your Solr containers at the drop of a hat, while all the contents of each Solr index are preserved. That's why we're using Docker!
 
 TODO.
 

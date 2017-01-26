@@ -1,0 +1,19 @@
+---
+- hosts: local
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    # Allow default configuration to be overridden.
+    - include_vars: "{{ item }}"
+      with_fileglob:
+        - "config.yml"
+      tags: ['always']
+
+    - name: Install repo for Java 8.
+      apt_repository: repo=ppa:openjdk-r/ppa
+
+  roles:
+    - geerlingguy.java
+    - geerlingguy.solr

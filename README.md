@@ -10,13 +10,20 @@ This image is built on Docker Hub automatically any time the upstream Docker ima
   2. `cd` into this directory.
   3. Run `docker build -t docker-image-solr .`
 
-## How to Use
+## How to Use (Basic Demo)
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
   2. Pull this image from Docker Hub: `docker pull geerlingguy/docker-image-solr:latest` (or use the tag you built earlier, e.g. `docker-image-solr`).
-  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro geerlingguy/docker-image-solr:latest /usr/lib/systemd/systemd`
-    1. TODO: To persist Solr index data and manage configuration through the host, I mount a volume from the host with ``--volume=/some/folder/with/config/and/index:/var/solr:rw``.
-  4. TODO.
+  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=/path/to/new_core:/var/solr/data/new_core:rw -p 8983:8983 geerlingguy/docker-image-solr:latest /sbin/init`
+    1. Note that the `new_core` should contain a `conf` directory with your Solr core's `schema.xml`, `solrconfig.xml`, and other configuration, and a `data` directory where the index will be stored. You can also exclude the `--volume` definition for the `new_core` if you don't need any persistent data.
+  4. Visit [http://localhost:8983/](http://localhost:8983/) in a browser, and you should see the Apache Solr admin interface.
+  5. Click on 'Core Admin'.
+  6. Click 'Add Core' with the defaults that appear (assuming you are using the directory `new_core`).
+  7. Solr is ready to work with your application, using the `new_core`!
+
+## How to Use (Real World)
+
+TODO.
 
 ## Overriding Configuration
 

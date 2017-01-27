@@ -1,5 +1,7 @@
 # Docker Image - Apache Solr
 
+[![Build Status](https://travis-ci.org/geerlingguy/docker-image-solr.svg?branch=master)](https://travis-ci.org/geerlingguy/docker-image-solr) [![Docker Automated build](https://img.shields.io/docker/automated/geerlingguy/docker-image-solr.svg?maxAge=2592000)](https://hub.docker.com/r/geerlingguy/docker-image-solr/)
+
 The [official Solr repository](https://hub.docker.com/_/solr/) for Docker is well-maintained and helpful in many use cases, but I need a slightly more customized build for my projects. Therefore, this is a Docker container to build different versions of Solr that I need in production.
 
 ## How to Build
@@ -13,15 +15,14 @@ This image is built on Docker Hub automatically any time the upstream Docker ima
 ## How to Use (Basic Demo)
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
-  2. Pull this image from Docker Hub: `docker pull geerlingguy/docker-image-solr:latest` (or use the tag you built earlier, e.g. `docker-image-solr`).
-  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=/path/to/new_core:/var/solr/data/new_core:rw -p 8983:8983 --restart=always --name=new_core geerlingguy/docker-image-solr:latest /sbin/init`
-    1. Note that the `new_core` should contain a `conf` directory with your Solr core's `schema.xml`, `solrconfig.xml`, and other configuration, and a `data` directory where the index will be stored. You can also exclude the `--volume` definition for the `new_core` if you don't need any persistent data.
+  2. `cd` into the `tests` directory.
+  3. Run `docker-compose up -d`
   4. Visit [http://localhost:8983/](http://localhost:8983/) in a browser, and you should see the Apache Solr admin interface.
   5. Click on 'Core Admin'.
   6. You should see the `new_core` that you configured in the listing.
   7. Solr is ready to work with your application, using the `new_core`!
 
-When you're finished testing, run `docker stop new_core` to stop the container, and `docker rm new_core` to delete the container (the local core data—config and index data—on your host will be preserved).
+When you're finished testing, run `docker-compose stop` to stop Solr, and `docker-compose rm` to delete the Solr container (the local core data—config and index data—on your host will be preserved).
 
 ## How to Use (Real World)
 
@@ -33,7 +34,7 @@ TODO.
 
 ## Overriding Configuration
 
-You can override default configuration variables by adding a `config.yml` fil inside the `provisioning` folder alongside the `default.config.yml` file.
+You can override default `geerlingguy.java` and `geerlingguy.solr` Ansible role configuration variables by adding a `config.yml` fil inside the `provisioning` folder alongside the `default.config.yml` file.
 
 ## License
 

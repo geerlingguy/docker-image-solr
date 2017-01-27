@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+
+  solr:
+    build:
+      context: ../
+    image: solr:test
+    container_name: new_core
+    ports:
+      - "8983:8983"
+    restart: always
+    privileged: true
+    volumes:
+      - ./new_core:/var/solr/data/new_core:rw
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: /sbin/init

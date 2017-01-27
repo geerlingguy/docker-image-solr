@@ -5,4 +5,5 @@ script:
   - cd tests
   - docker-compose up -d
   - docker ps -a
-  - curl http://localhost:8983/
+  - sleep 8
+  - curl http://localhost:8983/solr/#/

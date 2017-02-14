@@ -1,4 +1,4 @@
-FROM geerlingguy/docker-ubuntu1604-ansible:latest
+FROM geerlingguy/docker-debian8-ansible:latest
 MAINTAINER Jeff Geerling
 
 # Copy provisioning playbook.

@@ -11,8 +11,25 @@
         - "config.yml"
       tags: ['always']
 
-    - name: Install repo for Java 8.
-      apt_repository: repo=ppa:openjdk-r/ppa
+    - name: Enable Backports repository.
+      apt_repository:
+        repo: 'deb http://ftp.debian.org/debian {{ ansible_distribution_release }}-backports main'
+        state: present
+        filename: "{{ ansible_distribution_release }}_backports"
+      register: debian_backports
+
+    - name: Update apt cache.
+      apt: update_cache=yes
+      when: debian_backports.changed
+
+    # See: http://unix.stackexchange.com/a/342469
+    - name: Install dependencies.
+      apt:
+        default_release: "{{ ansible_distribution_release }}-backports"
+        name:
+          - openjdk-8-jre-headless
+          - ca-certificates-java
+        state: present
 
   roles:
     - geerlingguy.java

@@ -1,6 +1,6 @@
 # Docker Image - Apache Solr
 
-[![Build Status](https://travis-ci.org/geerlingguy/docker-image-solr.svg?branch=master)](https://travis-ci.org/geerlingguy/docker-image-solr) [![Docker Automated build](https://img.shields.io/docker/automated/geerlingguy/docker-image-solr.svg?maxAge=2592000)](https://hub.docker.com/r/geerlingguy/docker-image-solr/)
+[![Build Status](https://travis-ci.org/geerlingguy/docker-image-solr.svg?branch=master)](https://travis-ci.org/geerlingguy/docker-image-solr) [![Docker Automated build](https://img.shields.io/docker/automated/geerlingguy/docker-image-solr.svg?maxAge=2592000)](https://hub.docker.com/r/geerlingguy/docker-image-solr/) [![](https://images.microbadger.com/badges/image/geerlingguy/docker-image-solr.svg)](https://microbadger.com/images/geerlingguy/docker-image-solr "Get your own image badge on microbadger.com")
 
 The [official Solr repository](https://hub.docker.com/_/solr/) for Docker is well-maintained and helpful in many use cases, but I need a slightly more customized build for my projects. Therefore, this is a Docker container to build different versions of Solr that I need in production.
 

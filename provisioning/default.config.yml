@@ -3,6 +3,7 @@ java_packages:
   - openjdk-8-jdk
 
 solr_version: "6.4.0"
+solr_remove_cruft: true
 solr_xms: "256M"
 solr_xmx: "512M"
 solr_timezone: "UTC"

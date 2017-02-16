@@ -30,6 +30,16 @@ Seeing a running Solr instance looks pretty... but means nothing in the real wor
 
 And on top of that, the creation and maintenance of all the Solr containers should be fully automated. You should be able to build or rebuild all your Solr containers at the drop of a hat, while all the contents of each Solr index are preserved. That's why we're using Docker!
 
+### Quickly running an instance of the container for testing
+
+The fastest way to grab and use this container for 'quick and dirty' testing (e.g. to inspect the container or play around with it) is to use the following `docker run` command:
+
+    docker run --detach --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro -p 8983:8983 geerlingguy/docker-image-solr:latest /sbin/init
+
+This is basically the same thing as what's defined in the `docker-compose.yml` file in the tests directory, but allows you to manage one container by hand.
+
+### More scalable use cases
+
 TODO.
 
 ## Overriding Configuration

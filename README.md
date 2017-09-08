@@ -1,4 +1,8 @@
-# Docker Image - Apache Solr
+# (DEPRECATED) Docker Image - Apache Solr
+
+**DEPRECATION NOTICE**: Please use my [Solr Container](https://github.com/geerlingguy/solr-container) project and Docker Hub images instead!
+
+-----
 
 [![Build Status](https://travis-ci.org/geerlingguy/docker-image-solr.svg?branch=master)](https://travis-ci.org/geerlingguy/docker-image-solr) [![Docker Automated build](https://img.shields.io/docker/automated/geerlingguy/docker-image-solr.svg?maxAge=2592000)](https://hub.docker.com/r/geerlingguy/docker-image-solr/) [![](https://images.microbadger.com/badges/image/geerlingguy/docker-image-solr.svg)](https://microbadger.com/images/geerlingguy/docker-image-solr "Get your own image badge on microbadger.com")
 
